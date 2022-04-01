@@ -1,5 +1,5 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/music/musicFunctions";
 import dotenv from "dotenv"
 dotenv.config()
 const spotifyToYT = require("spotify-to-yt")

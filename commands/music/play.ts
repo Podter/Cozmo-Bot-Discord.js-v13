@@ -1,5 +1,5 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/music/musicFunctions";
 const spotifyToYT = require("spotify-to-yt")
 const youtubedl = require('youtube-dl-exec')
 

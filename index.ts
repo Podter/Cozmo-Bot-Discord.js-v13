@@ -10,7 +10,6 @@ const client = new Discord.Client({
 });
 
 client.on("ready", () => {
-    console.log("Bot is Ready!")
     new WOKCommands(client, {
         commandsDir: path.join(__dirname, "commands"),
         typeScript: true,
@@ -20,7 +19,6 @@ client.on("ready", () => {
             'language',
             'prefix',
             'requiredrole',
-            'channelOnly',
             'slash',
             'channelonly'
         ],
@@ -46,6 +44,7 @@ client.on("ready", () => {
         },
     ])
     client.user.setPresence({ activities: [{ name: 'music | Type /help', type: "LISTENING" }], status: 'idle' });
+    console.log("Bot is Ready!")
 })
 
 client.login(process.env.TOKEN);
