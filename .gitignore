@@ -128,3 +128,6 @@ dist
 
 # package lock
 package-lock.json
+
+# index-js.ts
+index-js.ts
