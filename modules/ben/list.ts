@@ -1,3 +1,13 @@
+const messagesJson = {
+    "messages": [
+        "Yes? 🤔",
+        "No 🙄",
+        "Hohoho 🤣",
+        "uhgg 😛 "
+    ]
+}
+
+
 export default {
-    messages: require('./messages.json').messages,
+    messages: messagesJson.messages,
 }
