@@ -1,5 +1,3 @@
-// The different between this and index.ts is line 18
-
 import { Intents } from "discord.js";
 const Discord = require("discord.js");
 import WOKCommands from "wokcommands"
@@ -11,17 +9,16 @@ const client = new Discord.Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_MEMBERS]
 });
 
-client.on("ready", () => {
+client.on("ready", async () => {
     new WOKCommands(client, {
         commandsDir: path.join(__dirname, "commands"),
-        typeScript: false, // here!
+        typeScript: false,
         disabledDefaultCommands: [
             'help',
             'command',
             'language',
             'prefix',
             'requiredrole',
-            'channelOnly',
             'slash',
             'channelonly'
         ],
@@ -44,6 +41,10 @@ client.on("ready", () => {
         {
             name: 'Help',
             emoji: '💡'
+        },
+        {
+            name: 'Fun',
+            emoji: '😂'
         },
     ])
     client.user.setPresence({ activities: [{ name: 'music | Type /help', type: "LISTENING" }], status: 'idle' });

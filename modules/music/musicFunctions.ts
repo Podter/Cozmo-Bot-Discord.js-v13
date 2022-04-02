@@ -10,7 +10,6 @@ import { Track } from './track';
 import { MusicSubscription } from './subscription';
 const ytpl = require('ytpl');
 import dotenv from "dotenv"
-import path from "path"
 dotenv.config()
 const spotifyToYT = require("spotify-to-yt")
 spotifyToYT.setCredentials(process.env.SPOTIFYCLIENTID, process.env.SPOTIFYCLIENTSECRET)
