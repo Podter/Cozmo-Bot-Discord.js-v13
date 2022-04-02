@@ -3,7 +3,7 @@
   "description": "A Discord bot named \"Cozmo\" (aka. Podter's Bot)",
   "main": "index.ts",
   "scripts": {
-    "build": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc && rm ./index-js.ts",
+    "build": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc",
     "start": "npm run build && node dist/index-js.js",
     "dev": "nodemon index.ts",
     "heroku": "cp example.env .env && npm start"
