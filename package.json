@@ -3,7 +3,9 @@
   "description": "A Discord bot named \"Cozmo\" (aka. Podter's Bot)",
   "main": "index.ts",
   "scripts": {
-    "build": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc",
+    "build": "run-script-os",
+    "build:win32": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc && powershell rm index-js.ts",
+    "build:darwin:linux": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc && rm ./index-js.ts",
     "start": "npm run build && node dist/index-js.js",
     "dev": "nodemon index.ts",
     "heroku": "cp example.env .env && npm start"
@@ -24,6 +26,7 @@
     "libsodium-wrappers": "^0.7.9",
     "mongoose": "^6.2.9",
     "nodemon": "^2.0.15",
+    "run-script-os": "^1.1.6",
     "spotify-to-yt": "^1.1.1",
     "ts-node": "^10.7.0",
     "typescript": "4.5",
