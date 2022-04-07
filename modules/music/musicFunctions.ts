@@ -15,6 +15,14 @@ const spotifyToYT = require("spotify-to-yt")
 spotifyToYT.setCredentials(process.env.SPOTIFYCLIENTID, process.env.SPOTIFYCLIENTSECRET)
 const youtubedl = require('youtube-dl-exec')
 
+const footer = {
+    text: "Cozmo",
+    iconURL: "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png",
+}
+const errorAuthor = {
+    name: "Error! ❌",
+}
+
 const subscriptions = new Map<Snowflake, MusicSubscription>();
 
 export async function play(interaction: any, args: any, musicStreaming: any, member: any) {
@@ -47,10 +55,10 @@ export async function play(interaction: any, args: any, musicStreaming: any, mem
         const embed = new MessageEmbed()
         embed.setColor('#f28fad')
         embed.setTitle(`Failed to join Voice Channel!`)
-        embed.setAuthor('Error! ❌')
+        embed.setAuthor(errorAuthor)
         embed.setDescription(`${error}`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo');
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
         return;
     }
@@ -68,33 +76,36 @@ export async function play(interaction: any, args: any, musicStreaming: any, mem
                 const embed = new MessageEmbed()
                 embed.setColor('#f28fad')
                 embed.setTitle(`Error code:`)
-                embed.setAuthor('Error! ❌')
+                embed.setAuthor(errorAuthor)
                 embed.setDescription(`${error}`)
                 embed.setTimestamp()
-                embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+                embed.setFooter(footer);
                 interaction.editReply({ embeds: [embed] });
             },
         });
         subscription.enqueue(track);
         const embed = new MessageEmbed()
+        const author = {
+            name: `Added to Queue! 🎶 (${musicStreaming})`,
+        }
         embed.setColor('#abe9b3')
         embed.setTitle(`${track.title}`)
         embed.setURL(`${track.url}`)
-        embed.setAuthor(`Added to Queue! 🎶 (${musicStreaming})`)
+        embed.setAuthor(author)
         embed.setDescription(`By ${track.author}`)
         embed.setImage(`https://img.youtube.com/vi/${track.videoId}/maxresdefault.jpg`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
     } catch (error) {
         console.warn(error);
         const embed = new MessageEmbed()
         embed.setColor('#f28fad')
         embed.setTitle(`Failed to play track!`)
-        embed.setAuthor('Error! ❌')
+        embed.setAuthor(errorAuthor)
         embed.setDescription(`${error}`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
     }
 }
@@ -139,17 +150,20 @@ export async function queue (interaction: any){
             .join('\n');
 
         const embed = new MessageEmbed()
+        const author = {
+            name: "Queue 📃",
+        }
         embed.setColor('#96cdfb')
         embed.setTitle(`${current}`)
         embed.setURL(`${currentUrl}`)
-        embed.setAuthor('Queue 📃')
+        embed.setAuthor(author)
         if (`${queue}` === "") {
             embed.setDescription(`Server queue is Empty! What should we play next? 🤷‍♂️`)
         } else {
             embed.setDescription(`**(${Object.keys(subscription.queue).length}) Upcomming next:**\n${queue}`)
         }
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
     } else {
         await interaction.editReply('Noting is playing in this server! 🤷‍♂️');
@@ -200,14 +214,17 @@ export async function nowplaying (interaction: any){
             : `${(subscription.audioPlayer.state.resource as AudioResource<Track>).metadata.author}`;
 
         const embed = new MessageEmbed()
+        const author = {
+            name: 'Now playing 📃',
+        }
         embed.setColor('#96cdfb')
         embed.setTitle(`${current}`)
         embed.setURL(`${currentUrl}`)
-        embed.setAuthor('Now playing 📃')
+        embed.setAuthor(author)
         embed.setDescription(`By ${currentAuthor}`)
         embed.setImage(`https://img.youtube.com/vi/${currentId}/maxresdefault.jpg`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
     } else {
         await interaction.editReply('Noting is playing in this server! 🤷‍♂️');
@@ -244,10 +261,10 @@ export async function playlist(interaction: any, playlistUrl: any) {
         const embed = new MessageEmbed()
         embed.setColor('#f28fad')
         embed.setTitle(`Failed to join Voice Channel!`)
-        embed.setAuthor('Error! ❌')
+        embed.setAuthor(errorAuthor)
         embed.setDescription(`${error}`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
         return;
     }
@@ -268,24 +285,27 @@ export async function playlist(interaction: any, playlistUrl: any) {
                     const embed = new MessageEmbed()
                     embed.setColor('#f28fad')
                     embed.setTitle(`Error code:`)
-                    embed.setAuthor('Error! ❌')
+                    embed.setAuthor(errorAuthor)
                     embed.setDescription(`${error}`)
                     embed.setTimestamp()
-                    embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+                    embed.setFooter(footer);
                     interaction.editReply({ embeds: [embed] });
                 },
             });
             await subscription.enqueue(track);
         }
         const embed = new MessageEmbed()
+        const author = {
+            name: `Added to Queue! 🎶 (Youtube Playlist)`,
+        }
         embed.setColor('#abe9b3')
         embed.setTitle(`${playlist.title}`)
         embed.setURL(`${playlistUrl}`)
-        embed.setAuthor(`Added to Queue! 🎶 (Youtube Playlist)`)
+        embed.setAuthor(author)
         embed.setDescription(`**By ${playlist.author.name}**\nUse "queue to see Playlist!\nNote: Playlist limit is 100 videos!`)
         embed.setImage(`https://img.youtube.com/vi/${playlist.items[1].id}/maxresdefault.jpg`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
         
     } catch (error) {
@@ -293,10 +313,10 @@ export async function playlist(interaction: any, playlistUrl: any) {
         const embed = new MessageEmbed()
         embed.setColor('#f28fad')
         embed.setTitle(`Failed to play track!`)
-        embed.setAuthor('Error! ❌')
+        embed.setAuthor(errorAuthor)
         embed.setDescription(`${error}`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
     }
 }
@@ -331,10 +351,10 @@ export async function playlistSpotify(interaction: any, playlistUrl: any) {
         const embed = new MessageEmbed()
         embed.setColor('#f28fad')
         embed.setTitle(`Failed to join Voice Channel!`)
-        embed.setAuthor('Error! ❌')
+        embed.setAuthor(errorAuthor)
         embed.setDescription(`${error}`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
         return;
     }
@@ -355,20 +375,23 @@ export async function playlistSpotify(interaction: any, playlistUrl: any) {
                         const embed = new MessageEmbed()
                         embed.setColor('#f28fad')
                         embed.setTitle(`Error code:`)
-                        embed.setAuthor('Error! ❌')
+                        embed.setAuthor(errorAuthor)
                         embed.setDescription(`${error}`)
                         embed.setTimestamp()
-                        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+                        embed.setFooter(footer);
                         interaction.editReply({ embeds: [embed] });
                     },
                 });
                 await subscription?.enqueue(track);
             }
             const embed = new MessageEmbed()
+            const author = {
+                name: `Added to Queue! 🎶 (Spotify Playlist)`,
+            }
             embed.setColor('#abe9b3')
             embed.setTitle(`${playlist.info.name}`)
             embed.setURL(`${playlistUrl}`)
-            embed.setAuthor(`Added to Queue! 🎶 (Spotify Playlist)`)
+            embed.setAuthor(author)
             embed.setDescription(`**By ${playlist.info.owner.display_name}**\nUse "queue to see Playlist!\nNote: Playlist limit is 100 videos!`)
             const firstVideoID = await youtubedl(playlist.songs[1], {
                 defaultSearch: "auto",
@@ -378,7 +401,7 @@ export async function playlistSpotify(interaction: any, playlistUrl: any) {
               })
             embed.setImage(`https://img.youtube.com/vi/${firstVideoID}/maxresdefault.jpg`)
             embed.setTimestamp()
-            embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+            embed.setFooter(footer);
             interaction.editReply({ embeds: [embed] })
             console.log(playlist.info.images)
         })
@@ -388,10 +411,10 @@ export async function playlistSpotify(interaction: any, playlistUrl: any) {
         const embed = new MessageEmbed()
         embed.setColor('#f28fad')
         embed.setTitle(`Failed to play track!`)
-        embed.setAuthor('Error! ❌')
+        embed.setAuthor(errorAuthor)
         embed.setDescription(`${error}`)
         embed.setTimestamp()
-        embed.setFooter('Cozmo', "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png");
+        embed.setFooter(footer);
         interaction.editReply({ embeds: [embed] });
     }
 }

@@ -1,7 +1,7 @@
 import { ICommand } from "wokcommands";
 import * as musicFunctions from "../../modules/music/musicFunctions";
 const spotifyToYT = require("spotify-to-yt")
-const youtubedl = require('youtube-dl-exec')
+spotifyToYT.setCredentials(process.env.SPOTIFY_CLIENT_ID, process.env.SPOTIFY_CLIENT_SECRET)
 
 export default {
     name: 'Play',
@@ -25,13 +25,11 @@ export default {
         } else if (joinedArgs.startsWith("https://www.youtube.com/watch?") || joinedArgs.startsWith("http://www.youtube.com/watch?") || joinedArgs.startsWith("https://youtube.com/watch?") || joinedArgs.startsWith("http://youtube.com/watch?") || joinedArgs.startsWith("youtube.com/watch?") || joinedArgs.startsWith("www.youtube.com/watch?") || joinedArgs.includes("watch?")) {
             musicFunctions.play(interaction, joinedArgs, "Youtube", member)
         } else {
-            const url = await youtubedl(joinedArgs, {
-                defaultSearch: "auto",
-                getId: "",
-              }).then((output: any) => {
-                return `https://www.youtube.com/watch?v=${output}`
-              })
-            musicFunctions.play(interaction, url, "Youtube", member)
+            spotifyToYT.trackSearch(joinedArgs).then(async (spotifyInfo: any) => {
+                spotifyToYT.trackGet(spotifyInfo.url).then(async (youtubeInfo: any) => {
+                    await musicFunctions.play(interaction, youtubeInfo.url, "Spotify", member)
+                })
+            })
         }
     },
 } as ICommand
