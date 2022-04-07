@@ -1,10 +1,10 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/vc/vcFunctions";
 
 export default {
     name: 'NowPlaying',
-    category: "Music",
-    description: "Display the current song that is playing",
+    category: "Voice Channel",
+    description: "Display the current track playing",
     slash: true,
     callback: async ({interaction}) => {
         await interaction.deferReply()

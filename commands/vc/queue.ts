@@ -1,9 +1,9 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/vc/vcFunctions";
 
 export default {
     name: 'Queue',
-    category: "Music",
+    category: "Voice Channel",
     description: "Display the current queue",
     slash: true,
     callback: async ({interaction}) => {

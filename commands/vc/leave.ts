@@ -1,9 +1,9 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/vc/vcFunctions";
 
 export default {
     name: 'Leave',
-    category: "Music",
+    category: "Voice Channel",
     description: "Leave the Voice Channel",
     slash: true,
     callback: ({ interaction }) => {

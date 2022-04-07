@@ -1,9 +1,9 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/vc/vcFunctions";
 
 export default {
     name: 'Skip',
-    category: "Music",
+    category: "Voice Channel",
     description: "Skip the track that is currently playing",
     slash: true,
     callback: ({interaction}) => {

@@ -1,11 +1,11 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/vc/vcFunctions";
 const spotifyToYT = require("spotify-to-yt")
 spotifyToYT.setCredentials(process.env.SPOTIFY_CLIENT_ID, process.env.SPOTIFY_CLIENT_SECRET)
 
 export default {
     name: 'Play',
-    category: "Music",
+    category: "Voice Channel",
     description: "Add a song to the queue",
     expectedArgs: '[song]',
     minArgs: 1,

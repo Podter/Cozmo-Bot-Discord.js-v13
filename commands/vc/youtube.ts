@@ -1,5 +1,5 @@
 import { ICommand } from "wokcommands";
-import * as musicFunctions from "../../modules/music/musicFunctions";
+import * as musicFunctions from "../../modules/vc/vcFunctions";
 import dotenv from "dotenv"
 dotenv.config()
 const youtubedl = require('youtube-dl-exec')
@@ -7,7 +7,7 @@ const youtubedl = require('youtube-dl-exec')
 
 export default {
     name: 'Youtube',
-    category: "Music",
+    category: "Voice Channel",
     description: "Add a song to the queue using youtube search",
     expectedArgs: '[song]',
     minArgs: 1,

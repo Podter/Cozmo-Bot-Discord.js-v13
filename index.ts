@@ -33,8 +33,8 @@ client.on("ready", async () => {
     })
     .setCategorySettings([
         {
-            name: 'Music',
-            emoji: '🎶'
+            name: 'Voice Channel',
+            emoji: '🎙️',
         },
         {
             name: 'Other',
