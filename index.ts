@@ -1,5 +1,6 @@
 import { Intents } from "discord.js";
 const Discord = require("discord.js");
+import { Player } from "discord-player"
 import WOKCommands from "wokcommands"
 import path from "path"
 import benDb from './modules/ben/schema'
@@ -10,6 +11,13 @@ dotenv.config()
 const client = new Discord.Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_MEMBERS]
 });
+
+export const player = client.player = new Player(client, {
+    ytdlOptions: {
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+})
 
 client.on("ready", async () => {
     new WOKCommands(client, {
