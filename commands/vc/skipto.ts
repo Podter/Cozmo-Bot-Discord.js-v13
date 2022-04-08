@@ -16,7 +16,6 @@ export default {
         if (!queue) return "There are no songs in the queue 🤷‍♂️"
 
         const trackNum: number = parseInt(args.shift()!)
-        console.log(trackNum)
         if (isNaN(trackNum) || trackNum > queue.tracks.length)
             return "❌ Invalid track number"
 		queue.skipTo(trackNum - 1)

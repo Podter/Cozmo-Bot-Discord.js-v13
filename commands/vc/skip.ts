@@ -18,7 +18,20 @@ export default {
 		queue.skip()
 
         return [
-            new MessageEmbed().setDescription(`⏭️ ${currentSong.title} has been skipped!`).setThumbnail(currentSong.thumbnail)
+            new MessageEmbed()
+            .setTitle(`${currentSong.title}`)
+            .setURL(`${currentSong.url}`)
+            .setDescription(`By ${currentSong.author}\n Duration: ${currentSong.duration}`)
+            .setThumbnail(currentSong.thumbnail)
+            .setAuthor({
+                name: `Skipped! ⏭️`,
+            })
+            .setTimestamp()
+            .setFooter({
+                text: "Cozmo",
+                iconURL: "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png",
+            })
+            .setColor('#F28FAD')
         ]
     },
 } as ICommand
