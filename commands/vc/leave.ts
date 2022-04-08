@@ -6,13 +6,13 @@ export default {
     category: "Voice Channel",
     description: "Leave the Voice Channel",
     slash: true,
-    callback: async ({ interaction }) => {
-        const guildId: any = interaction.guild
+    callback: async ({ guild }) => {
+        const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)
 
-		if (!queue) return await interaction.editReply("There are no songs in the queue")
+		if (!queue) return "There are no songs in the queue 🤷‍♂️"
 
 		queue.destroy()
-        await interaction.editReply("Bye!")
+        return "👋 Bye!"
     },
 } as ICommand

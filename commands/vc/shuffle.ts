@@ -6,12 +6,12 @@ export default {
     category: "Voice Channel",
     description: "Shuffles the queue",
     slash: true,
-    callback: async ({ interaction }) => {
-        const guildId: any = interaction.guild
+    callback: async ({ guild }) => {
+        const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)
-        if (!queue) return await interaction.editReply("There are no songs in the queue")
+        if (!queue) return "There are no songs in the queue 🤷‍♂️"
 
         queue.shuffle()
-        await interaction.editReply(`The queue of ${queue.tracks.length} songs have been shuffled!`)
+        return `🔀 The queue of ${queue.tracks.length} songs have been shuffled!`
     },
 } as ICommand

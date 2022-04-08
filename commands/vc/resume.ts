@@ -6,12 +6,12 @@ export default {
     category: "Voice Channel",
     description: "Resume the track that is currently playing",
     slash: true,
-    callback: async ({interaction}) => {
-        const guildId: any = interaction.guild
+    callback: async ({guild}) => {
+        const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)
-        if (!queue) return await interaction.editReply("There are no songs in the queue")
+        if (!queue) return "There are no songs in the queue 🤷‍♂️"
 
 		queue.setPaused(false)
-        await interaction.editReply("Music has been paused! Use `/pause` to resume the music")
+        return "▶️ Music has been resumed!"
     },
 } as ICommand

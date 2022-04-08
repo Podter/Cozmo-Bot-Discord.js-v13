@@ -7,19 +7,18 @@ export default {
     category: "Voice Channel",
     description: "Skip the track that is currently playing",
     slash: true,
-    callback: async ({interaction}) => {
-        const guildId: any = interaction.guild
+    callback: async ({guild}) => {
+        const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)
 
-		if (!queue) return await interaction.editReply("There are no songs in the queue")
+		if (!queue) return "There are no songs in the queue 🤷‍♂️"
 
         const currentSong = queue.current
 
 		queue.skip()
-        await interaction.editReply({
-            embeds: [
-                new MessageEmbed().setDescription(`${currentSong.title} has been skipped!`).setThumbnail(currentSong.thumbnail)
-            ]
-        })
+
+        return [
+            new MessageEmbed().setDescription(`⏭️ ${currentSong.title} has been skipped!`).setThumbnail(currentSong.thumbnail)
+        ]
     },
 } as ICommand
