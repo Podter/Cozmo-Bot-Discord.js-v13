@@ -6,6 +6,7 @@ export default {
     category: "Fun",
     description: "Make a call and invite Ben to the chat!",
     slash: true,
+    cooldown: '5s',
     callback: async ({ interaction, channel, guild }) => {
         if (await benDb.findOne({ guildId: guild?.id, channelId: channel?.id })) {
             interaction.reply('☎️ Ben hangs up!')

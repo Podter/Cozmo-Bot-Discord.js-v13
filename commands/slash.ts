@@ -14,6 +14,8 @@ export = {
   hidden: true,
 
   slash: true,
+  
+  cooldown: '5s',
 
   callback: async (options: ICallbackObject) => {
     const { channel, instance, text } = options

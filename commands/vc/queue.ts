@@ -10,6 +10,7 @@ name: 'Queue',
     maxArgs: 1,
     options: [],
     slash: true,
+    cooldown: '5s',
     callback: async ({ interaction, guild, args }) => {
         await interaction.deferReply()
         await new Promise((resolve) => setTimeout(resolve, 1000))

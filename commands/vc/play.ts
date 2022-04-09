@@ -10,11 +10,12 @@ export default {
     expectedArgs: '[song]',
     minArgs: 1,
     slash: true,
+    cooldown: '5s',
     callback: async ({ interaction, guild, member, args, user }) => {
         await interaction.deferReply()
         await new Promise((resolve) => setTimeout(resolve, 1000))
         if (!member.voice.channel) {
-            interaction.editReply("You need to be in a VC to use this command 🤷‍♂️")
+            interaction.editReply("❌ You need to be in a VC to use this command")
             return
         }
 
