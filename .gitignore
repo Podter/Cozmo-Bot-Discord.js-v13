@@ -131,3 +131,6 @@ package-lock.json
 
 # index-js.ts
 index-js.ts
+
+# test.ts
+test.ts
