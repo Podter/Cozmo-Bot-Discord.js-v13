@@ -40,7 +40,7 @@ name: 'Queue',
 		})
 
         const embed = new MessageEmbed()
-        .setColor('#abe9b3')
+        .setColor('#96cdfb')
         .setAuthor({
             name: `Queue 📃`,
         })

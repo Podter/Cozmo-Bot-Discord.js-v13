@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Podter/Cozmo-Bot#readme",
   "dependencies": {
+    "@discord-player/extractor": "^3.0.2",
     "@discordjs/opus": "^0.7.0",
     "@discordjs/voice": "^0.8.0",
     "discord-player": "^5.2.2",

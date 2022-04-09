@@ -1,6 +1,7 @@
 import { Intents } from "discord.js";
 const Discord = require("discord.js");
 import { Player } from "discord-player"
+import { Reverbnation } from "@discord-player/extractor"
 import WOKCommands from "wokcommands"
 import path from "path"
 import benDb from './modules/ben/schema'
@@ -20,6 +21,7 @@ export const player = client.player = new Player(client, {
 })
 
 client.on("ready", async () => {
+    player.use("reverbnation", Reverbnation)
     new WOKCommands(client, {
         commandsDir: path.join(__dirname, "commands"),
         typeScript: true,
