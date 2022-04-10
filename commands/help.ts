@@ -6,6 +6,7 @@ export default {
     description: "List all commands!",
     slash: true,
     cooldown: '5s',
+    testOnly: true,
     callback: ({}) => {
         return 'This is the help command!';
     },

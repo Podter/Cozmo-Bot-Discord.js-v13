@@ -7,6 +7,7 @@ export default {
     description: "Leave the Voice Channel",
     slash: true,
     cooldown: '5s',
+    testOnly: true,
     callback: async ({ guild, member }) => {
         const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)
