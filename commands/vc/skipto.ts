@@ -11,7 +11,6 @@ export default {
     options: [],
     slash: true,
     cooldown: '5s',
-    testOnly: true,
     callback: async ({ args, guild, member }) => {
         const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)

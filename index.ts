@@ -35,7 +35,7 @@ client.on("ready", async () => {
             'channelonly'
         ],
         botOwners: ["331793642689789962"],
-        testServers: ["886859636148408382", "874983667888427059"],
+        testServers: ["886859636148408382"],
         mongoUri: process.env.MONGO_URI,
         dbOptions: {
             keepAlive: true,

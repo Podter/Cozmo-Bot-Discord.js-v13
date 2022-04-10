@@ -17,8 +17,6 @@ export = {
   
   cooldown: '5s',
 
-  testOnly: true,
-
   callback: async (options: ICallbackObject) => {
     const { channel, instance, text } = options
 

@@ -11,7 +11,6 @@ export default {
     minArgs: 1,
     slash: true,
     cooldown: '5s',
-    testOnly: true,
     callback: async ({ interaction, guild, member, args, user }) => {
         await interaction.deferReply()
         await new Promise((resolve) => setTimeout(resolve, 1000))

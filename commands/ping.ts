@@ -6,7 +6,6 @@ export default {
     description: "Replies with Pong!",
     slash: true,
     cooldown: '5s',
-    testOnly: true,
     callback: ({}) => {
         return 'Pong! 🏓'
     },
