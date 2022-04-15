@@ -1,1 +1,1 @@
-web: npm start
+worker: cp example.env .env && npm start

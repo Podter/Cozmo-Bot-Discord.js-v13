@@ -6,7 +6,7 @@
     "build": "run-script-os",
     "build:win32": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc && powershell rm index-js.ts",
     "build:darwin:linux": "sed \"s/typeScript: true,/typeScript: false,/\" ./index.ts >> ./index-js.ts && tsc && rm ./index-js.ts",
-    "start": "cp example.env .env && npm run build && node dist/index-js.js",
+    "start": "npm run build && node dist/index-js.js",
     "dev": "nodemon index.ts"
   },
   "repository": {
