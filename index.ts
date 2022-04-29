@@ -9,6 +9,10 @@ import benMessages from './modules/ben/list'
 import dotenv from "dotenv"
 dotenv.config()
 
+import express from "express"
+import apiRouter from "./modules/api/api";
+const app = express()
+
 const client = new Discord.Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_MEMBERS]
 });
@@ -70,5 +74,8 @@ client.on('messageCreate', async (message: any) => {
         message.reply(`**🐶 Ben:** ${benMessageText}`)
     }
 })
+
+app.use('/', apiRouter)
+app.listen(process.env.PORT || 8080, () => console.log(`App listening on port ${process.env.PORT || 8080}`))
 
 client.login(process.env.TOKEN);
