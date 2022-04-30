@@ -1,4 +1,4 @@
-### Cozmo-Bot
+# Cozmo-Bot
 A Discord bot named "Cozmo" (aka. Podter's Bot)
 
 ## Prerequisites
@@ -22,7 +22,7 @@ npm run dev
 ```
 
 ## Build and run
-# JavaScript
+### JavaScript
 Run this to build to `./dist`
 ```
 npm run build
@@ -31,7 +31,7 @@ And then run it
 ```
 npm start
 ```
-# Docker
+### Docker
 Run this to build to Docker image `podter/cozmo-bot`
 ```
 npm run build:docker
