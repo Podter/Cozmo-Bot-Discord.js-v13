@@ -29,7 +29,7 @@ export async function play(song: any, requestedUser: any, res: any, queue: any) 
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue?.addTracks(result.tracks)
+            queue.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
@@ -42,7 +42,7 @@ export async function play(song: any, requestedUser: any, res: any, queue: any) 
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue?.addTracks(result.tracks)
+            queue.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
@@ -55,7 +55,7 @@ export async function play(song: any, requestedUser: any, res: any, queue: any) 
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue?.addTracks(result.tracks)
+            queue.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
@@ -68,7 +68,7 @@ export async function play(song: any, requestedUser: any, res: any, queue: any) 
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue?.addTracks(result.tracks)
+            queue.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }

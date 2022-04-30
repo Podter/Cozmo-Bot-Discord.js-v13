@@ -25,7 +25,8 @@ router.get('/:id', async (req, res) => {
         if (!queue.connection) await queue.connect(vc)
         const song = `${req.query.song}`
         const requestedUser = `${req.query.userid}`
-        play(song, requestedUser, res, queue)
+        await play(song, requestedUser, res, queue)
+        if (!queue.playing) await queue.play()
     } else {
         const queue = getQueue(guildId)
         const song = `${req.query.song}`
