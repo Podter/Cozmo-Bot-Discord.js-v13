@@ -11,10 +11,7 @@ router.get('/', (_req, res) => {
 router.get('/:id', async (req, res) => {
     const guildId: any = req.params.id
     const queue = getQueue(guildId)
-    if (!queue || !queue.current) {
-        res.status(404).json({ error: 'No queue in this server or server not found', code: 404 })
-        return
-    } else if (!req.query.song) {
+    if (!req.query.song) {
         res.status(400).json({ error: 'No song provided', code: 400 })
         return
     } else if (!req.query.userid) {
@@ -35,7 +32,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue.addTracks(result.tracks)
+            queue?.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
@@ -48,7 +45,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue.addTracks(result.tracks)
+            queue?.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
@@ -61,7 +58,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue.addTracks(result.tracks)
+            queue?.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
@@ -74,7 +71,7 @@ router.get('/:id', async (req, res) => {
             res.status(404).json({ error: 'No results', code: 404 })
             return
         } else {
-            queue.addTracks(result.tracks)
+            queue?.addTracks(result.tracks)
             res.status(200).json({ error: 'Added to queue', code: 200 })
             return
         }
