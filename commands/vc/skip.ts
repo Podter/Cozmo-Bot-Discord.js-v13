@@ -1,6 +1,6 @@
 import { MessageEmbed } from "discord.js";
 import { ICommand } from "wokcommands";
-import * as index from "../../index"
+import { player } from "../../index"
 
 export default {
     name: 'Skip',
@@ -10,7 +10,7 @@ export default {
     cooldown: '5s',
     callback: async ({ guild, member, interaction }) => {
         const guildId: any = guild?.id
-        const queue = index.player.getQueue(guildId)
+        const queue = player.getQueue(guildId)
         
 		if (!queue) return "There are no songs in the queue 🤷‍♂️"
         if (!member.voice.channel) return "❌ You must be in a voice channel to use this command"

@@ -1,6 +1,6 @@
 import { ICommand } from "wokcommands";
 import { Lyrics } from "@discord-player/extractor";
-import * as index from "../../index"
+import { player } from "../../index"
 import { QueryType } from "discord-player";
 import { MessageEmbed } from "discord.js";
 const lyricsClient = Lyrics.init(process.env.GENIUS_ACCESS_TOKEN);
@@ -18,7 +18,7 @@ export default {
         await new Promise((resolve) => setTimeout(resolve, 1000))
 
         const guildId: any = guild?.id
-        const queue = index.player.getQueue(guildId)
+        const queue = player.getQueue(guildId)
 
         const joinedArgs = args.join(' ')
         let embed = new MessageEmbed()
@@ -33,7 +33,7 @@ export default {
             interaction.editReply("❌ Playlists are not supported")
             return
         } else if (joinedArgs.startsWith("https://www.youtube.com/watch") || joinedArgs.startsWith("http://www.youtube.com/watch") || joinedArgs.startsWith("https://youtube.com/watch") || joinedArgs.startsWith("http://youtube.com/watch") || joinedArgs.startsWith("youtube.com/watch") || joinedArgs.startsWith("www.youtube.com/watch") || joinedArgs.includes("/watch") || joinedArgs.includes("https://open.spotify.com/track") || joinedArgs.includes("http://open.spotify.com/track") || joinedArgs.includes("open.spotify.com/track")) {
-            const result = await index.player.search(joinedArgs, {
+            const result = await player.search(joinedArgs, {
                 requestedBy: user,
                 searchEngine: QueryType.AUTO
             })

@@ -1,6 +1,6 @@
 import { MessageEmbed } from "discord.js";
 import { ICommand } from "wokcommands";
-import * as index from "../../index"
+import { player } from "../../index"
 
 export default {
 name: 'Queue',
@@ -15,7 +15,7 @@ name: 'Queue',
         await interaction.deferReply()
         await new Promise((resolve) => setTimeout(resolve, 1000))
         const guildId: any = guild?.id
-        const queue = index.player.getQueue(guildId)
+        const queue = player.getQueue(guildId)
         if (!queue || !queue.playing){
             interaction.editReply("There are no songs in the queue 🤷‍♂️")
             return

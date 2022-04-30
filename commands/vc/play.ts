@@ -1,7 +1,7 @@
 import { QueryType } from "discord-player";
 import { ICommand } from "wokcommands";
 const { MessageEmbed } = require("discord.js")
-import * as index from "../../index"
+import { player } from "../../index"
 
 export default {
     name: 'Play',
@@ -20,7 +20,7 @@ export default {
         }
 
         const guildId: any = guild?.id
-        const queue = index.player.createQueue(guildId)
+        const queue = player.createQueue(guildId)
         const vc: any = member.voice.channel
         if (!queue.connection) await queue.connect(vc)
 
@@ -28,7 +28,7 @@ export default {
         let embed = new MessageEmbed()
 
         if (joinedArgs.startsWith("https://open.spotify.com/playlist") || joinedArgs.startsWith("http://open.spotify.com/playlist") || joinedArgs.startsWith("open.spotify.com/playlist") || joinedArgs.includes("/playlist/")) {
-            const result = await index.player.search(joinedArgs, {
+            const result = await player.search(joinedArgs, {
                 requestedBy: user,
                 searchEngine: QueryType.SPOTIFY_PLAYLIST
             })
@@ -45,7 +45,7 @@ export default {
                 .setImage(playlist?.thumbnail)
             }
         } else if (joinedArgs.startsWith("https://open.spotify.com/album") || joinedArgs.startsWith("http://open.spotify.com/album") || joinedArgs.startsWith("open.spotify.com/album") || joinedArgs.includes("/album/")) {
-            const result = await index.player.search(joinedArgs, {
+            const result = await player.search(joinedArgs, {
                 requestedBy: user,
                 searchEngine: QueryType.SPOTIFY_ALBUM
             })
@@ -62,7 +62,7 @@ export default {
                 .setImage(playlist?.thumbnail)
             }
         } else if (joinedArgs.startsWith("https://www.youtube.com/playlist?") || joinedArgs.startsWith("http://www.youtube.com/playlist?") || joinedArgs.startsWith("https://youtube.com/playlist?") || joinedArgs.startsWith("http://youtube.com/playlist?") || joinedArgs.startsWith("youtube.com/playlist?") || joinedArgs.startsWith("www.youtube.com/playlist?") || joinedArgs.includes("playlist?") || joinedArgs.includes("&list")) {
-            const result = await index.player.search(joinedArgs, {
+            const result = await player.search(joinedArgs, {
                 requestedBy: user,
                 searchEngine: QueryType.YOUTUBE_PLAYLIST
             })
@@ -79,7 +79,7 @@ export default {
                 .setImage(playlist?.thumbnail)
             }
         } else {
-            const result = await index.player.search(joinedArgs, {
+            const result = await player.search(joinedArgs, {
                 requestedBy: user,
                 searchEngine: QueryType.AUTO
             })
