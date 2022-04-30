@@ -51,9 +51,9 @@ name: 'Queue',
         .setTimestamp()
         .setFooter({
             text: `Page ${page + 1} of ${totalPages} • Cozmo`,
-            iconURL: "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png",
+            iconURL: "attachment://pfp-png.png",
         })
         .setThumbnail(currentSong.thumbnail)
-        interaction.editReply({ embeds: [embed] })
+        interaction.editReply({ embeds: [embed], files: ['./assets/pfp-png.png'] })
     },
 } as ICommand

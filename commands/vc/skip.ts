@@ -8,7 +8,7 @@ export default {
     description: "Skip the track that is currently playing",
     slash: true,
     cooldown: '5s',
-    callback: async ({ guild, member }) => {
+    callback: async ({ guild, member, interaction }) => {
         const guildId: any = guild?.id
         const queue = index.player.getQueue(guildId)
         
@@ -19,21 +19,22 @@ export default {
 
 		queue.skip()
 
-        return [
-            new MessageEmbed()
-            .setTitle(`${currentSong.title}`)
-            .setURL(`${currentSong.url}`)
-            .setDescription(`By ${currentSong.author}\n Duration: ${currentSong.duration}`)
-            .setThumbnail(currentSong.thumbnail)
-            .setAuthor({
-                name: `Skipped! ⏭️`,
-            })
-            .setTimestamp()
-            .setFooter({
-                text: "Cozmo",
-                iconURL: "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png",
-            })
-            .setColor('#F28FAD')
-        ]
+        const embed = new MessageEmbed()
+        .setTitle(`${currentSong.title}`)
+        .setURL(`${currentSong.url}`)
+        .setDescription(`By ${currentSong.author}\n Duration: ${currentSong.duration}`)
+        .setThumbnail(currentSong.thumbnail)
+        .setAuthor({
+            name: `Skipped! ⏭️`,
+        })
+        .setTimestamp()
+        .setFooter({
+            text: "Cozmo",
+            iconURL: "attachment://pfp-png.png",
+        })
+        .setColor('#F28FAD')
+
+        interaction.reply({ embeds: [embed], files: ['./assets/pfp-png.png'] })
+        return
     },
 } as ICommand

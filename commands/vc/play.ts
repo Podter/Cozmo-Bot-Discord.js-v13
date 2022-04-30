@@ -105,10 +105,10 @@ export default {
         .setTimestamp()
         .setFooter({
             text: "Cozmo",
-            iconURL: "https://media.discordapp.net/attachments/959692896720797736/959693526092906506/pfp-png.png",
+            iconURL: "attachment://pfp-png.png",
         })
         
         if (!queue.playing) await queue.play()
-        interaction.editReply({ embeds: [embed] })
+        interaction.editReply({ embeds: [embed], files: ['./assets/pfp-png.png'] })
     },
 } as ICommand
