@@ -1,6 +1,6 @@
 import express from "express"
 const router = express.Router()
-import { client, player } from "../../../index"
+import { player } from "../../../index"
 import { getVc } from "../getFunctions"
 
 router.get('/', (_req, res) => {
@@ -14,9 +14,6 @@ router.get('/:id', async (req, res) => {
         return
     } else if (!getVc(guildId, req.query.userid)) {
         res.status(400).json({ error: 'User is not in a voice channel', code: 400 })
-        return
-    } else if (client.voice.channel) {
-        res.status(400).json({ error: 'Bot is already in a voice channel', code: 400 })
         return
     }
     const queue = player.createQueue(guildId)
