@@ -1,8 +1,8 @@
-import * as index from "../../index"
+import { player } from "../../index"
 
 function getQueue(guildId: any) {
     try {
-        return index.player.getQueue(guildId)
+        return player.getQueue(guildId)
     } catch (err) {
         return null
     }

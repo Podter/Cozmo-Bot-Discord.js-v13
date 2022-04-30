@@ -9,11 +9,12 @@ router.get('/', (_req, res) => {
 router.get('/:id', (req, res) => {
     const guildId: any = req.params.id
     const queue = getQueue(guildId)
-    if (!queue) {
+    if (!queue || !queue.current) {
         res.status(404).json({ error: 'No queue in this server or server not found', code: 404 })
         return
-    } 
-    res.json(queue.current)
+    }
+    queue.shuffle()
+    res.status(200).json({ message: 'Queue shuffled', code: 200 })
 })
 
 export default router

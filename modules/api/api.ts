@@ -1,20 +1,26 @@
 import express from "express"
 const router = express.Router()
 
-import npRouter from "./routes/nowplaying";
 import queueRouter from "./routes/queue";
 import lyricsRouter from "./routes/lyrics";
+import skipRouter from "./routes/skip";
+import leaveRouter from "./routes/leave";
+import pauseRouter from "./routes/pause";
+import shuffleRouter from "./routes/shuffle";
+import playRouter from "./routes/play";
+import joinRouter from "./routes/join";
 
 router.get('/', (_req, res) => {
     res.json({ message: 'Cozmo bot API' })
 })
 
-router.use('/nowplaying', npRouter)
 router.use('/queue', queueRouter)
 router.use('/lyrics', lyricsRouter)
-
-router.get('/:any', (_req, res) => {
-    res.status(404).json({ error: 'Not found', code: 404 })
-})
+router.use('/skip', skipRouter)
+router.use('/leave', leaveRouter)
+router.use('/pause', pauseRouter)
+router.use('/shuffle', shuffleRouter)
+router.use('/play', playRouter)
+router.use('/join', joinRouter)
 
 export default router

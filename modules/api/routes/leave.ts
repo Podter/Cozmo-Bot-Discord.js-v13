@@ -1,26 +1,20 @@
 import express from "express"
 const router = express.Router()
 import getQueue from '../getQueue'
-import { Lyrics } from "@discord-player/extractor";
-const lyricsClient = Lyrics.init(process.env.GENIUS_ACCESS_TOKEN);
 
 router.get('/', (_req, res) => {
     res.status(400).json({ error: 'No id provided', code: 400 })
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
     const guildId: any = req.params.id
     const queue = getQueue(guildId)
-    if (!queue) {
+    if (!queue || !queue.current) {
         res.status(404).json({ error: 'No queue in this server or server not found', code: 404 })
         return
     }
-    const lyrics = await lyricsClient.search(queue.current.title)
-    if (!lyrics) {
-        res.status(404).json({ error: 'No lyrics found', code: 404 })
-        return
-    }
-    res.status(200).json({ lyrics: lyrics.lyrics, code: 200 })
+    queue.destroy()
+    res.status(200).json({ message: 'Queue destroyed', code: 200 })
 })
 
 export default router
