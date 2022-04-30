@@ -7,6 +7,7 @@
     "dev": "better-npm-run dev",
     "build": "tsc",
     "build:docker": "docker build -t podter/cozmo-bot .",
+    "build:heroku": "better-npm-run build:heroku",
     "start:docker": "better-npm-run start:docker"
   },
   "betterScripts": {
@@ -24,6 +25,12 @@
     },
     "start:docker": {
       "command": "docker run -d -p 8080:8080 -e TOKEN=$TOKEN -e SPOTIFY_CLIENT_ID=$SPOTIFY_CLIENT_ID -e SPOTIFY_CLIENT_SECRET=$SPOTIFY_CLIENT_SECRET -e MONGO_URI=$MONGO_URI -e GENIUS_ACCESS_TOKEN=$GENIUS_ACCESS_TOKEN --name cozmo-bot podter/cozmo-bot"
+    },
+    "build:heroku": {
+      "command": "heroku login && docker ps && heroku container:login && heroku container:push web -a $APP && heroku container:release web -a $APP",
+      "env": {
+        "APP": "cozmo-discord-bot"
+      }
     }
   },
   "repository": {
