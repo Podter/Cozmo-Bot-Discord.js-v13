@@ -8,7 +8,6 @@ import leaveRouter from "./routes/leave";
 import pauseRouter from "./routes/pause";
 import shuffleRouter from "./routes/shuffle";
 import playRouter from "./routes/play";
-import joinRouter from "./routes/join";
 
 router.get('/', (_req, res) => {
     res.json({ message: 'Cozmo bot API' })
@@ -21,6 +20,5 @@ router.use('/leave', leaveRouter)
 router.use('/pause', pauseRouter)
 router.use('/shuffle', shuffleRouter)
 router.use('/play', playRouter)
-router.use('/join', joinRouter)
 
 export default router
