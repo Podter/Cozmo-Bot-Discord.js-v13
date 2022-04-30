@@ -14,7 +14,7 @@ router.get('/:id', async (req, res) => {
     const guildId: any = req.params.id
     const queue = player.createQueue(guildId)
     const userId = req.query.userid
-    const guild = client.client.guilds.cache.get(`${guildId}`)
+    const guild = client.guilds.cache.get(`${guildId}`)
     const member = guild.members.cache.get(`${userId}`)
     const vc: any = member.voice.channel
     if (!queue.connection) await queue.connect(vc)
