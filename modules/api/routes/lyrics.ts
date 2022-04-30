@@ -1,8 +1,6 @@
 import express from "express"
 const router = express.Router()
 import getQueue from '../getQueue'
-import dotenv from "dotenv";
-dotenv.config();
 import { Lyrics } from "@discord-player/extractor";
 const lyricsClient = Lyrics.init(process.env.GENIUS_ACCESS_TOKEN);
 

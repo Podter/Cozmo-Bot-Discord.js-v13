@@ -1,10 +1,8 @@
 import { ICommand } from "wokcommands";
 import { Lyrics } from "@discord-player/extractor";
-import dotenv from "dotenv";
 import * as index from "../../index"
 import { QueryType } from "discord-player";
 import { MessageEmbed } from "discord.js";
-dotenv.config();
 const lyricsClient = Lyrics.init(process.env.GENIUS_ACCESS_TOKEN);
 
 export default {

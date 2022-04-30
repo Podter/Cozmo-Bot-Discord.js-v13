@@ -6,8 +6,8 @@ import WOKCommands from "wokcommands"
 import path from "path"
 import benDb from './modules/ben/schema'
 import benMessages from './modules/ben/list'
-import dotenv from "dotenv"
-dotenv.config()
+const envIsTypescript: any =  process.env.ISTYPESCRIPT || false
+const isTypescript: boolean = envIsTypescript === "true"
 
 import express from "express"
 import apiRouter from "./modules/api/api";
@@ -28,7 +28,7 @@ client.on("ready", async () => {
     player.use("reverbnation", Reverbnation)
     new WOKCommands(client, {
         commandsDir: path.join(__dirname, "commands"),
-        typeScript: true,
+        typeScript: isTypescript,
         disabledDefaultCommands: [
             'help',
             'command',

@@ -3,9 +3,28 @@
   "description": "A Discord bot named \"Cozmo\" (aka. Podter's Bot)",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts",
-    "dev": "npm start",
-    "heroku": "cp example.env .env && npm start"
+    "start": "better-npm-run start",
+    "dev": "better-npm-run dev",
+    "build": "tsc",
+    "build:docker": "docker build -t podter/cozmo-bot .",
+    "start:docker": "better-npm-run start:docker"
+  },
+  "betterScripts": {
+    "start": {
+      "command": "node dist/index.js",
+      "env": {
+        "ISTYPESCRIPT": "false"
+      }
+    },
+    "dev": {
+      "command": "nodemon index.ts",
+      "env": {
+        "ISTYPESCRIPT": "true"
+      }
+    },
+    "start:docker": {
+      "command": "docker run -d -p 8080:8080 -e TOKEN=$TOKEN -e SPOTIFY_CLIENT_ID=$SPOTIFY_CLIENT_ID -e SPOTIFY_CLIENT_SECRET=$SPOTIFY_CLIENT_SECRET -e MONGO_URI=$MONGO_URI -e GENIUS_ACCESS_TOKEN=$GENIUS_ACCESS_TOKEN --name cozmo-bot podter/cozmo-bot"
+    }
   },
   "repository": {
     "type": "git",
@@ -19,22 +38,23 @@
   "dependencies": {
     "@discord-player/extractor": "^3.0.2",
     "@discordjs/opus": "^0.7.0",
-    "@discordjs/voice": "^0.8.0",
+    "@discordjs/voice": "^0.9.0",
+    "better-npm-run": "^0.1.1",
     "discord-player": "^5.2.2",
     "discord.js": "13.6.0",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
-    "ffmpeg-static": "^4.4.1",
+    "ffmpeg-static": "^5.0.0",
     "libsodium-wrappers": "^0.7.10",
-    "mongoose": "^6.2.10",
-    "nodemon": "^2.0.15",
+    "mongoose": "^6.3.1",
+    "nodemon": "^2.0.16",
     "run-script-os": "^1.1.6",
     "ts-node": "^10.7.0",
     "typescript": "4.6",
     "wokcommands": "^1.5.3"
   },
   "engines": {
-    "node": "16.14.2"
+    "node": "16.15.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.13"
