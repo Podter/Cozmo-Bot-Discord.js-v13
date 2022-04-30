@@ -1,7 +1,7 @@
 import { QueryType } from "discord-player"
 import express from "express"
 const router = express.Router()
-import getQueue from '../getQueue'
+import { getQueue, getVc } from '../getFunctions'
 import { player } from "../../../index"
 
 router.get('/', (_req, res) => {
@@ -17,12 +17,15 @@ router.get('/:id', async (req, res) => {
     } else if (!req.query.song) {
         res.status(400).json({ error: 'No song provided', code: 400 })
         return
-    } else if (!req.query.user) {
+    } else if (!req.query.userid) {
         res.status(400).json({ error: 'No user id provided', code: 400 })
+        return
+    } else if (!getVc(guildId, req.query.userid)) {
+        res.status(400).json({ error: 'User is not in a voice channel', code: 400 })
         return
     }
     const song = `${req.query.song}`
-    const requestedUser = `${req.query.user}`
+    const requestedUser = `${req.query.userid}`
     if (song.startsWith("https://open.spotify.com/playlist") || song.startsWith("http://open.spotify.com/playlist") || song.startsWith("open.spotify.com/playlist") || song.includes("/playlist/")) {
         const result = await player.search(song, {
             requestedBy: requestedUser,
