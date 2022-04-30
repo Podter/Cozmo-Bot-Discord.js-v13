@@ -1,7 +1,7 @@
-# Cozmo-Bot
+### Cozmo-Bot
 A Discord bot named "Cozmo" (aka. Podter's Bot)
 
-# Prerequisites
+## Prerequisites
 - Node.js (LTS)
 - Spotify API
 - MongoDB
@@ -15,14 +15,14 @@ npm install
 
 > NOTE: Made for linux lol
 
-# Development
+## Development
 Run this and it will watch for changes! Make change some file, save it and it will restart automatically
 ```
 npm run dev
 ```
 
-# Build and run
-- JavaScript
+## Build and run
+# JavaScript
 Run this to build to `./dist`
 ```
 npm run build
@@ -31,7 +31,7 @@ And then run it
 ```
 npm start
 ```
-- Docker
+# Docker
 Run this to build to Docker image `podter/cozmo-bot`
 ```
 npm run build:docker
