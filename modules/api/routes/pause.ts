@@ -1,6 +1,6 @@
 import express from "express"
 const router = express.Router()
-import { getQueue, getVc } from '../getFunctions'
+import { getQueue, getVc } from '../apiFunctions'
 
 router.get('/', (_req, res) => {
     res.status(400).json({ error: 'No id provided', code: 400 })

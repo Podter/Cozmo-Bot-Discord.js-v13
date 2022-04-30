@@ -1,6 +1,6 @@
 import express from "express"
 const router = express.Router()
-import { getQueue, getVc } from '../getFunctions'
+import { getQueue, getVc } from '../apiFunctions'
 import { Lyrics } from "@discord-player/extractor";
 const lyricsClient = Lyrics.init(process.env.GENIUS_ACCESS_TOKEN);
 
