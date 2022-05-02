@@ -72,6 +72,11 @@ client.on('messageCreate', async (message: any) => {
         if (message.author.bot || message.author.id === client.user.id) return;
         const benMessageText = benMessages.messages[Math.floor(Math.random() * benMessages.messages.length)]
         message.reply(`**🐶 Ben:** ${benMessageText}`)
+        if (benMessageText === "-slam!- 📞") {
+            await new Promise((resolve) => setTimeout(resolve, 1000))
+            message.channel.send('☎️ Ben hangs up!')
+            await benDb.deleteOne({ guildId: message.guild?.id, channelId: message.channel?.id })
+        }
     }
 })
 

@@ -3,7 +3,8 @@ const messagesJson = {
         "Yes? 🤔",
         "No 🙄",
         "Hohoho 🤣",
-        "uhgg 😛 "
+        "uhgg 😛",
+        "-slam!- 📞",
     ]
 }
 
