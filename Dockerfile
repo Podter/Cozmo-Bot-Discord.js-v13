@@ -1,9 +1,11 @@
 # Base image
-FROM node:lts-alpine
+FROM node:lts-slim
 
 # Build
 WORKDIR /app
 COPY package.json .
+RUN apt update -y
+RUN apt install python3 build-essential -y
 RUN npm install
 COPY . .
 RUN npm run build
