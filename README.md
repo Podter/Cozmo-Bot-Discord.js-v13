@@ -1,6 +1,8 @@
 # Cozmo-Bot
 A Discord bot named "Cozmo" (aka. Podter's Bot)
 
+Using Discord.js v13. I don't use this anymore so I release the source code
+
 ## Prerequisites
 - Node.js (LTS)
 - Spotify API
